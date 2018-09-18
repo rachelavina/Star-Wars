@@ -25,7 +25,7 @@ public class Space extends JPanel   {
         hero = new Hero(600, 480, Color.BLUE, 20, "Steve");
         enemy = new Enemy(50, 50, Color.RED, 20, "Brad");
         timer = new Timer();
-        timer.scheduleAtFixedRate(new ScheduleTask(), 100, 100);
+        timer.scheduleAtFixedRate(new ScheduleTask(), 100, 50);
     }
     
     
@@ -47,6 +47,8 @@ public class Space extends JPanel   {
         
         @Override
         public void run()   {
+           wallCollissions(hero);
+           wallCollissions(enemy);
             hero.update();
             enemy.update();
             repaint();
@@ -67,7 +69,7 @@ public class Space extends JPanel   {
             hero.setDy(-3);
         }
             //super-speed
-        else if (e.getKeyCode()== KeyEvent.VK_A)    {
+        else if (e.getKeyCode()== KeyEvent.VK_A )    {
             hero.setDx(-10);
         }
         else if (e.getKeyCode()== KeyEvent.VK_S)    {
@@ -113,6 +115,7 @@ public class Space extends JPanel   {
         if (e.getKeyCode()== KeyEvent.VK_ALT)   {
             hero.setSize(20);
         }
+       
         
     }
     
@@ -145,8 +148,17 @@ public class Space extends JPanel   {
                 break;
             }
         }
-    private void wallCollissions()   {
-        //TODO Implment this method
+    }
+    private void wallCollissions(Character c)   {
+        //this.getWidth();
+        //this.getHeigth();, 0
+
+        
+        if (c.getX() <= 0 || c.getX() + 20 >= this.getWidth())   {
+            c.reverseX(2);
+    }
+        if (c.getY() <= 0 || c.getY() + 20 >= this.getHeight())    {
+            c.reverseY(3);
+        }         
     }
     }
-}

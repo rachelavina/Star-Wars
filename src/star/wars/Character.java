@@ -17,7 +17,7 @@ public class Character {
     private int dy;
     private Color color;
     private int size;
-    private int dsize;
+    //private int dsize;
     private Shape shape;
     private String name;
     
@@ -30,7 +30,7 @@ public class Character {
         dy =0;
         color = Color.BLUE;
         size = 20;
-        dsize = 0;
+        //dsize = 0;
         name = "enemy";
         
     }
@@ -43,7 +43,7 @@ public class Character {
         this.name = name;
         dx =0;
         dy =0;
-        dsize = 0;
+        //dsize = 0;
         
     }
     
@@ -98,9 +98,9 @@ public class Character {
         this.dy = dy;
     }
     
-    public void setDsize (int dsize)    {
+    /*public void setDsize (int dsize)    {
         this.dsize = dsize;
-    }
+    }*/
     
     public void setColor (Color color)  {
         this.color = color;
@@ -138,17 +138,15 @@ public class Character {
      public void update ()   {
         move(dx, dy);
     }
-     
+   
     public void reverseX(int dx)  {
-        if(x> 1200)  {
-            x += dx * -3;
+        x *= dx * -2;
             
-        }
+        
     }
     public void reverseY(int dy)  {
-        if (y > 960)    {
-        y += dy * -3;
-        }
+        y *= dy * -2;
+        
     }
     
     private void grow()  {
