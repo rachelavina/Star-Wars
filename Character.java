@@ -17,7 +17,6 @@ public class Character {
     private int dy;
     private Color color;
     private int size;
-    //private int dsize;
     private Shape shape;
     private String name;
     
@@ -30,7 +29,6 @@ public class Character {
         dy =0;
         color = Color.BLUE;
         size = 20;
-        //dsize = 0;
         name = "enemy";
         
     }
@@ -43,7 +41,6 @@ public class Character {
         this.name = name;
         dx =0;
         dy =0;
-        //dsize = 0;
         
     }
     
@@ -98,10 +95,6 @@ public class Character {
         this.dy = dy;
     }
     
-    /*public void setDsize (int dsize)    {
-        this.dsize = dsize;
-    }*/
-    
     public void setColor (Color color)  {
         this.color = color;
     }
@@ -117,11 +110,11 @@ public class Character {
     //Public Methods
     public void draw (Graphics g) {
         g.setColor(color);
-        g.fillOval(x, y, size, size);
+        g.fillRect(x, y, size, size);
     }
     
-    public void kill () {
-        grow();
+    public void kill (Character c) {
+        c.setSize(0);
     }
                         //1     //-1
     public void move (int dx, int dy) { 
@@ -131,21 +124,19 @@ public class Character {
     }
 
     //Private Methods
-    /*private void grow (int dsize) {
-        //size *= dsize * 1.05;
-    }*/
-    
      public void update ()   {
         move(dx, dy);
     }
    
-    public void reverseX(int dx)  {
-        x *= dx * -2;
+    public void reverseX()  {
+        dx = -dx;
+        move(2 * dx, 2 * dy);
             
         
     }
-    public void reverseY(int dy)  {
-        y *= dy * -2;
+    public void reverseY()  {
+        dy = -dy;
+        move(2 * dx, 2 * dy);
         
     }
     

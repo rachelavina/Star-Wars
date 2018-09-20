@@ -40,7 +40,7 @@ public class Space extends JPanel   {
         
         enemy.draw(g);
         
-        g.dispose();
+        //g.dispose();
     }
 
     private class ScheduleTask extends TimerTask    {
@@ -49,6 +49,8 @@ public class Space extends JPanel   {
         public void run()   {
            wallCollissions(hero);
            wallCollissions(enemy);
+           heroVsEnemy(enemy);
+           heroVsEnemy(hero);
             hero.update();
             enemy.update();
             repaint();
@@ -149,16 +151,41 @@ public class Space extends JPanel   {
             }
         }
     }
+    
+    private void heroVsEnemy (Character c)  {
+        
+        if (enemy.getX() == hero.getX() && enemy.getY() == hero.getY()) {
+            c.kill(enemy);
+        }
+        
+        if (enemy.getX() <= hero.getX()&& hero.getX() <= enemy.getX() + 3) {
+            c.kill(enemy);
+        }
+        if (enemy.getY() <= hero.getY() && hero.getY() <= enemy.getY() + 3)    {
+            c.kill(enemy);
+        }
+        if (enemy.getX() == hero.getX() + 4)   {
+            c.kill(enemy);
+        }
+        if (enemy.getY() == hero.getY() + 4)    {
+            c.kill(enemy);
+        }
+        
+    }
+    
     private void wallCollissions(Character c)   {
         //this.getWidth();
-        //this.getHeigth();, 0
+        //this.getHeigth();
 
         
         if (c.getX() <= 0 || c.getX() + 20 >= this.getWidth())   {
-            c.reverseX(2);
+            c.reverseX();
     }
+
         if (c.getY() <= 0 || c.getY() + 20 >= this.getHeight())    {
-            c.reverseY(3);
+            c.reverseY();
         }         
     }
+    
+    
     }
